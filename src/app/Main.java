@@ -1,25 +1,53 @@
 package app;
 
-import model.AVLTree;
+import control.ServiceOrderController;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        AVLTree tree = new AVLTree();
+        Scanner input = new Scanner(System.in);
+        ServiceOrderController SOController = new ServiceOrderController();
 
-        tree.inserir(21, "21");
-        tree.inserir(20, "20");
-        tree.inserir(24, "24");
-        tree.inserir(22, "22");
-        tree.inserir(25, "25");
-        tree.inserir(27, "27");
+        int choice;
+        boolean on = true;
 
-        tree.ordem();
+        while(on){
 
-        tree.remover(24, "24");
+            menu();
+            choice = input.nextInt();
+            switch (choice){
+                case 1:
+                    SOController.serviceOrdersList();
+                    break;
+                case 3:
+                    SOController.serviceOrderForm();
+                    break;
+                case 5:
+                    on = false;
+                    break;
+                default:
+                    System.out.println("Invalid value\n");
+                    break;
+            }
 
-        System.out.println();
-        tree.ordem();
+        }
 
+
+    }
+
+    public static void menu(){
+        System.out.println("------- Service Order Menu --------\n");
+
+        System.out.println("[1] - List Service Orders");
+        System.out.println("[2] - Edit Service Order");
+        System.out.println("[3] - Sign Service Order");
+        System.out.println("[4] - Delete Service Order");
+        System.out.println("[5] - Exit\n");
+
+        System.out.print("Choice: ");
     }
 }

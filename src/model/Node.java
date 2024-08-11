@@ -3,12 +3,12 @@ package model;
 public class Node {
 
     int key;
-    String value;
+    ServiceOrder serviceOrder;
     int nodeHeight;
     Node left, right;
 
-    public Node(int k, String v) {
-        key = k;
-        value = v;
+    public Node(int key, ServiceOrder serviceOrder) {
+        this.key = key;
+        this.serviceOrder = serviceOrder;
     }
 }
