@@ -1,6 +1,7 @@
 package control;
 
 import model.AVLTree;
+import model.Node;
 import model.ServiceOrder;
 
 import java.io.IOException;
@@ -18,8 +19,32 @@ public class ServiceOrderController {
         System.out.println("------- Service Orders List --------\n");
 
         serviceOrders.inorder();
+        System.out.println(serviceOrders.getNodeList());
 
-        System.out.println("\n");
+    }
+
+    public void serviceOrderEdit(){
+        System.out.println("------- Service Order Edit --------\n");
+
+        serviceOrders.inorder();
+        serviceOrders.showNodeList();
+
+        System.out.print("Select an id of a service order to edit it: ");
+        int choice = input.nextInt();
+
+        Node chosen = serviceOrders.getNode(serviceOrders.getRoot(), choice);
+
+        if(chosen != null){
+            System.out.println();
+        }
+
+        System.out.println("[1] Id:" );
+        System.out.println("[2] Name: ");
+        System.out.println("[3] Client: ");
+        System.out.println("[4] Description: ");
+        System.out.println("[5] Deadline: ");
+
+        System.out.println();
     }
 
     public void serviceOrderForm() throws IOException {
@@ -44,10 +69,17 @@ public class ServiceOrderController {
 
         ServiceOrder serviceOrder = new ServiceOrder(id, name, client, description, deadline);
         serviceOrders.insertNode(serviceOrder.getId(), serviceOrder);
+        serviceOrders.inorder();
 
-        fileAcess.WriteFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serviceOrders.txt", serviceOrders.inorderString());
+        fileAcess.WriteFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serviceOrders.txt", serviceOrders.getNodeList());
 
     }
 
+    public void serviceOrderDelete(){
+        System.out.println("------- Service Order Delete --------\n");
 
+        System.out.println("Em implementação");
+
+        System.out.println();
+    }
 }

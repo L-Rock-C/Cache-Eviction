@@ -3,38 +3,54 @@ package model;
 public class AVLTree {
 
     Node root = null;
+    private String nodeList = "";
 
     public AVLTree() {
 
     }
 
     public void inorder() {
+        nodeList = "";
         this.inorder(root);
     }
 
     private void inorder(Node tree) {
-
         if (tree != null) {
             this.inorder(tree.left);
-            System.out.print(tree.serviceOrder.toString());
+            nodeList += tree.serviceOrder.toString();
             this.inorder(tree.right);
         }
-
     }
 
-    public String inorderString() {
-        return this.inorderString(root);
+    public Node getNode(Node tree, int key){
+        if (tree.key == key)
+            return tree;
+
+        else if (key < tree.key)
+            return getNode(tree.left, key);
+
+        else if (key > tree.key)
+            return getNode(tree.right, key);
+
+        return null;
     }
 
-    private String inorderString(Node tree){
-       String inorderString = "";
-       if(tree != null){
-           this.inorder(tree.left);
-           inorderString += tree.serviceOrder.toString();
-           this.inorder(tree.right);
-       }
+    public void showNodeList(){this.showNodeList(root);}
 
-       return inorderString;
+    private void showNodeList(Node tree){
+        if(tree != null){
+            this.showNodeList(tree.left);
+            tree.serviceOrder.listShow();
+            this.showNodeList(tree.right);
+        }
+    }
+
+    public String getNodeList(){
+        return nodeList;
+    }
+
+    public Node getRoot(){
+        return root;
     }
 
     public void insertNode(int key, ServiceOrder serviceOrder) {

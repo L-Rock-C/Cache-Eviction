@@ -23,8 +23,14 @@ public class Main {
                 case 1:
                     SOController.serviceOrdersList();
                     break;
+                case 2:
+                    SOController.serviceOrderEdit();
+                    break;
                 case 3:
                     SOController.serviceOrderForm();
+                    break;
+                case 4:
+                    SOController.serviceOrderDelete();
                     break;
                 case 5:
                     on = false;
