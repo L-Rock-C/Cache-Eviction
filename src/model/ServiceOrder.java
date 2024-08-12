@@ -1,6 +1,8 @@
 package model;
 
+import java.sql.Time;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class ServiceOrder {
@@ -14,50 +16,49 @@ public class ServiceOrder {
 
     private String description;
 
-    private LocalDateTime requestDate;
-    private LocalDateTime deadline;
-    private DateTimeFormatter dateTimeFormater;
+    private LocalTime requestDate;
 
-    public ServiceOrder(int id, String name, String client, String description, LocalDateTime deadline) {
+    public ServiceOrder(int id, String name, String client, String description) {
         this.id = id;
         this.name = name;
         this.client = client;
         this.description = description;
-        this.requestDate = LocalDateTime.now();
-        this.deadline = deadline;
+        this.requestDate = LocalTime.now();
     }
-    public ServiceOrder(int id, String name, String client, String description, LocalDateTime requestDate,
-                        LocalDateTime deadline) {
+
+    public ServiceOrder(int id, String name, String client, String description, LocalTime requestDate) {
         this.id = id;
         this.name = name;
         this.client = client;
         this.description = description;
         this.requestDate = requestDate;
-        this.deadline = deadline;
     }
 
-    public ServiceOrder(){};
+    public ServiceOrder() {
+    }
 
-    public void show(){
+    ;
+
+    public void show() {
         System.out.println("Id: " + getId());
         System.out.println("Name: " + getName());
         System.out.println("Client: " + getClient());
         System.out.println("Description: " + getDescription());
         System.out.println("Request Date: " + getRequestDate());
-        System.out.println("Deadline: " + getDeadline());
     }
 
-    public void listShow(){
+    public void listShow() {
         System.out.print("  Id: " + getId() + "  |  ");
         System.out.print("Name: " + getName() + "  |  ");
-        System.out.println("Deadline: " + getDeadline());
+        System.out.print("Client: " + getClient() + "  |  ");
+        System.out.print("Description: " + getDescription() + "  |  ");
+        System.out.println("Request Date: " + getRequestDate());
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String toString;
-        toString = getId() + ";" + getName() + ";" + getClient() + ";" + getDescription() + ";" + getRequestDate() + ";"
-                   + getDeadline() + "\n";
+        toString = getId() + ";" + getName() + ";" + getClient() + ";" + getDescription() + ";" + getRequestDate() + "\n";
         return toString;
     }
 
@@ -93,27 +94,11 @@ public class ServiceOrder {
         this.description = description;
     }
 
-    public LocalDateTime getRequestDate() {
+    public LocalTime getRequestDate() {
         return requestDate;
     }
 
-    public void setRequestDate(LocalDateTime requestDate) {
+    public void setRequestDate(LocalTime requestDate) {
         this.requestDate = requestDate;
-    }
-
-    public LocalDateTime getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(LocalDateTime deadline) {
-        this.deadline = deadline;
-    }
-
-    public DateTimeFormatter getDateTimeFormater() {
-        return dateTimeFormater;
-    }
-
-    public void setDateTimeFormater(DateTimeFormatter dateTimeFormater) {
-        this.dateTimeFormater = dateTimeFormater;
     }
 }

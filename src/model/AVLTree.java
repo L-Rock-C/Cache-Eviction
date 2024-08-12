@@ -22,17 +22,17 @@ public class AVLTree {
         }
     }
 
-    public Node searchNode(int x) {
-        return this.searchNode(root, x);
+    public Node searchNode(int id) {
+        return this.searchNode(root, id);
     }
 
-    public Node searchNode(Node tree, int x) {
+    public Node searchNode(Node tree, int id) {
         if(tree == null)
             return null;
-        if(x < tree.key)
-            return this.searchNode(tree.left, x);
-        else if(x > tree.key)
-            return this.searchNode(tree.right, x);
+        if(id < tree.key)
+            return this.searchNode(tree.left, id);
+        else if(id > tree.key)
+            return this.searchNode(tree.right, id);
         else
             return tree;
 
@@ -48,6 +48,16 @@ public class AVLTree {
             tree.serviceOrder.listShow();
             this.showNodeList(tree.right);
         }
+    }
+
+    public Node lastNode(Node tree){
+        Node lastNodeLeaf = null;
+
+        if(tree != null){
+            lastNodeLeaf = this.lastNode(tree.right);
+        }
+
+        return lastNodeLeaf;
     }
 
     public String getNodeList(){

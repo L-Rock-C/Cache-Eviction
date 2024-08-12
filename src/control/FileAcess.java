@@ -4,7 +4,7 @@ import model.AVLTree;
 import model.ServiceOrder;
 
 import java.io.*;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class FileAcess {
 
@@ -35,10 +35,9 @@ public class FileAcess {
                 String name = SOData[1];
                 String client = SOData[2];
                 String description = SOData[3];
-                LocalDateTime requestData = LocalDateTime.parse(SOData[4]);
-                LocalDateTime deadline = LocalDateTime.parse(SOData[5]);
+                LocalTime requestData = LocalTime.parse(SOData[4]);
 
-                ServiceOrder serviceOrder = new ServiceOrder(id, name, client, description, requestData, deadline);
+                ServiceOrder serviceOrder = new ServiceOrder(id, name, client, description, requestData);
 
                 servicesOrders.insertNode(id, serviceOrder);
             }

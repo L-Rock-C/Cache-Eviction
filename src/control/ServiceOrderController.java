@@ -1,17 +1,15 @@
 package control;
 
-import model.AVLTree;
-import model.Node;
-import model.ServiceOrder;
+import model.*;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class ServiceOrderController {
     FileAcess fileAcess = new FileAcess();
     AVLTree serviceOrders = fileAcess.readSOFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serviceOrders.txt");
     Scanner input = new Scanner(System.in);
+    Cache cache = new Cache();
 
     public ServiceOrderController() throws IOException { }
 
@@ -21,16 +19,19 @@ public class ServiceOrderController {
         serviceOrders.inorder();
         serviceOrders.showNodeList();
 
-        System.out.print("\nSelect a service order by its id to visualize: ");
+        System.out.println();
+    }
+
+    public void serviceOrderView(){
+        System.out.println("------- Service Order Visualization --------\n");
+
+        System.out.print("Select a service order by its id to visualize: ");
         int choice = input.nextInt();
 
         Node chosen = serviceOrders.searchNode(choice);
         if(chosen != null) {
-            System.out.println("\nId:" + chosen.getServiceOrder().getId());
-            System.out.println("Name: " + chosen.getServiceOrder().getName());
-            System.out.println("Client: " + chosen.getServiceOrder().getClient());
-            System.out.println("Description: " + chosen.getServiceOrder().getDescription());
-            System.out.println("Deadline: " + chosen.getServiceOrder().getDeadline());
+            System.out.println();
+            chosen.getServiceOrder().listShow();
 
             System.out.print("\nPress Enter to continue.");
             input.nextLine();
@@ -38,8 +39,6 @@ public class ServiceOrderController {
         } else{
             System.out.println("\nService Order with id " + choice + " doesn't exist.\n");
         }
-
-        System.out.println();
     }
 
     public void serviceOrderEdit() throws IOException {
@@ -61,8 +60,7 @@ public class ServiceOrderController {
                 System.out.println("[2] Name: " + chosen.getServiceOrder().getName());
                 System.out.println("[3] Client: " + chosen.getServiceOrder().getClient());
                 System.out.println("[4] Description: " + chosen.getServiceOrder().getDescription());
-                System.out.println("[5] Deadline: " + chosen.getServiceOrder().getDeadline());
-                System.out.println("\n[6] Finish edit.\n");
+                System.out.println("\n[5] Finish edit.\n");
 
                 System.out.print("Select a field to edit: ");
                 choice = input.nextInt();
@@ -90,11 +88,6 @@ public class ServiceOrderController {
                         chosen.getServiceOrder().setDescription(description);
                         break;
                     case 5:
-                        System.out.print("Insert new Deadline value: ");
-                        LocalDateTime deadline = LocalDateTime.parse(input.nextLine());
-                        chosen.getServiceOrder().setDeadline(deadline);
-                        break;
-                    case 6:
                         serviceOrders.inorder();
                         fileAcess.WriteFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serviceOrders.txt", serviceOrders.getNodeList());
                         System.out.println();
@@ -127,10 +120,7 @@ public class ServiceOrderController {
         System.out.print("Description: ");
         String description = input.nextLine();
 
-        System.out.print("Deadline: ");
-        LocalDateTime deadline = LocalDateTime.parse(input.nextLine());
-
-        ServiceOrder serviceOrder = new ServiceOrder(id, name, client, description, deadline);
+        ServiceOrder serviceOrder = new ServiceOrder(id, name, client, description);
         serviceOrders.insertNode(serviceOrder.getId(), serviceOrder);
         serviceOrders.inorder();
         fileAcess.WriteFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serviceOrders.txt", serviceOrders.getNodeList());

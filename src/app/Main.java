@@ -24,36 +24,39 @@ public class Main {
                     SOController.serviceOrdersList();
                     break;
                 case 2:
-                    SOController.serviceOrderEdit();
+                    SOController.serviceOrderView();
                     break;
                 case 3:
-                    SOController.serviceOrderForm();
+                    SOController.serviceOrderEdit();
                     break;
                 case 4:
-                    SOController.serviceOrderDelete();
+                    SOController.serviceOrderForm();
                     break;
                 case 5:
+                    SOController.serviceOrderDelete();
+                    break;
+                case 6:
                     on = false;
                     break;
                 default:
                     System.out.println("Invalid value\n");
                     break;
             }
-
         }
-
-
     }
 
     public static void menu(){
         System.out.println("------- Service Order Menu --------\n");
 
         System.out.println("[1] - List Service Orders");
-        System.out.println("[2] - Edit Service Order");
-        System.out.println("[3] - Sign Service Order");
-        System.out.println("[4] - Delete Service Order");
-        System.out.println("[5] - Exit\n");
+        System.out.println("[2] - View Service Orders");
+        System.out.println("[3] - Edit Service Order");
+        System.out.println("[4] - Sign Service Order");
+        System.out.println("[5] - Delete Service Order");
+        System.out.println("[6] - Exit\n");
 
         System.out.print("Choice: ");
     }
 }
+// [ ] - Change path to files
+// [ ] - Exceptions handle
