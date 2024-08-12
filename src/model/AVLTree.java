@@ -22,20 +22,25 @@ public class AVLTree {
         }
     }
 
-    public Node getNode(Node tree, int key){
-        if (tree.key == key)
-            return tree;
-
-        else if (key < tree.key)
-            return getNode(tree.left, key);
-
-        else if (key > tree.key)
-            return getNode(tree.right, key);
-
-        return null;
+    public Node searchNode(int x) {
+        return this.searchNode(root, x);
     }
 
-    public void showNodeList(){this.showNodeList(root);}
+    public Node searchNode(Node tree, int x) {
+        if(tree == null)
+            return null;
+        if(x < tree.key)
+            return this.searchNode(tree.left, x);
+        else if(x > tree.key)
+            return this.searchNode(tree.right, x);
+        else
+            return tree;
+
+    }
+
+    public void showNodeList(){
+        this.showNodeList(root);
+    }
 
     private void showNodeList(Node tree){
         if(tree != null){
@@ -47,10 +52,6 @@ public class AVLTree {
 
     public String getNodeList(){
         return nodeList;
-    }
-
-    public Node getRoot(){
-        return root;
     }
 
     public void insertNode(int key, ServiceOrder serviceOrder) {
@@ -106,50 +107,45 @@ public class AVLTree {
 
     }
 
-    public void removeNode(int key, String value) {
-        root = removeNode(root, key, value);
+    public void removeNode(int key, ServiceOrder serviceOrder) {
+        root = removeNode(root, key, serviceOrder);
     }
 
-    private Node removeNode(Node tree, int key, String value) {
+    private Node removeNode(Node tree, int key, ServiceOrder serviceOrder) {
 
         if (tree == null)
             return tree;
 
         if (key < tree.key)
-            tree.left = removeNode(tree.left, key, value);
+            tree.left = removeNode(tree.left, key, serviceOrder);
 
         else if (key > tree.key)
-            tree.right = removeNode(tree.right, key, value);
+            tree.right = removeNode(tree.right, key, serviceOrder);
 
         else {
 
-            if (tree.left == null && tree.right == null)
+            if (tree.left == null && tree.right == null){
 
                 tree = null;
-
-            else if (tree.left == null) {
+            } else if (tree.left == null) {
 
                 Node temp = tree;
                 tree = temp.right;
                 temp = null;
-            }
-
-            else if (tree.right == null) {
+            } else if (tree.right == null) {
 
                 Node temp = tree;
                 tree = temp.left;
                 temp = null;
             } else {
 
-                //Node temp = smallerKey(tree.right);
-                //tree.key = temp.key;
-                //tree.value = temp.value;
-                //temp.key = key;
-                //temp.value = value;
-                //tree.right = removeNode(tree.right, temp.key, temp.value);
-
+                Node temp = smallerKey(tree.right);
+                tree.key = temp.key;
+                tree.serviceOrder = temp.serviceOrder;
+                temp.key = key;
+                temp.serviceOrder = serviceOrder;
+                tree.right = removeNode(tree.right, temp.key, temp.serviceOrder);
             }
-
         }
 
         if (tree == null)
