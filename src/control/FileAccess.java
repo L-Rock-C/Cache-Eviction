@@ -6,7 +6,7 @@ import model.ServiceOrder;
 import java.io.*;
 import java.time.LocalTime;
 
-public class FileAcess {
+public class FileAccess {
 
     public void WriteFile(String path, String input) throws IOException
     {
