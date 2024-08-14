@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class ServiceOrderController {
-    FileAcess fileAcess = new FileAcess();
-    AVLTree serviceOrders = fileAcess.readSOFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serviceOrders.txt");
+    FileAccess fileAccess = new FileAccess();
+    AVLTree serviceOrders = fileAccess.readSOFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serviceOrders.txt");
     Scanner input = new Scanner(System.in);
     Cache cache = new Cache();
 
@@ -89,7 +89,7 @@ public class ServiceOrderController {
                         break;
                     case 5:
                         serviceOrders.inorder();
-                        fileAcess.WriteFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serviceOrders.txt", serviceOrders.getNodeList());
+                        fileAccess.WriteFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serviceOrders.txt", serviceOrders.getNodeList());
                         System.out.println();
                         done = true;
                         break;
@@ -123,7 +123,7 @@ public class ServiceOrderController {
         ServiceOrder serviceOrder = new ServiceOrder(id, name, client, description);
         serviceOrders.insertNode(serviceOrder.getId(), serviceOrder);
         serviceOrders.inorder();
-        fileAcess.WriteFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serviceOrders.txt", serviceOrders.getNodeList());
+        fileAccess.WriteFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serviceOrders.txt", serviceOrders.getNodeList());
     }
 
     public void serviceOrderDelete() throws IOException {
@@ -139,10 +139,11 @@ public class ServiceOrderController {
         if(chosen != null){
             serviceOrders.removeNode(chosen.key, chosen.serviceOrder);
             serviceOrders.inorder();
-            fileAcess.WriteFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serviceOrders.txt", serviceOrders.getNodeList());
+            fileAccess.WriteFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serviceOrders.txt", serviceOrders.getNodeList());
             System.out.println("Service order deleted.");
         }
 
         System.out.println();
     }
+
 }
