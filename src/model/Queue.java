@@ -28,17 +28,6 @@ public class Queue<T>{
         this.maxSize = maxSize;
     }
 
-    public QueueNode searchQueueNode(T value){
-        QueueNode search = head;
-        while(search.next != null){
-            if(value == search.data){
-                return search;
-            }
-            search = search.next;
-        }
-        return null;
-    }
-
     public void add(T value) {
         QueueNode node = new QueueNode(value);
 

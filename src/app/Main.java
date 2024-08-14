@@ -35,6 +35,9 @@ public class Main {
                     SOController.serviceOrderDelete();
                     break;
                 case 6:
+                    SOController.getCache().printCache();
+                    break;
+                case 7:
                     on = false;
                     break;
                 default:
@@ -52,7 +55,8 @@ public class Main {
         System.out.println("[3] - Edit Service Order");
         System.out.println("[4] - Sign Service Order");
         System.out.println("[5] - Delete Service Order");
-        System.out.println("[6] - Exit\n");
+        System.out.println("[6] - View Cache");
+        System.out.println("[7] - Exit\n");
 
         System.out.print("Choice: ");
     }

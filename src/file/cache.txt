@@ -1,0 +1,2 @@
+56;Visit Client Store;Ana;Follow up on previous repairs at YYY Avenue;22:00:11.452489
+32;Maintenance Check;Ana;Assist with setting up new devices at CCC Drive;22:45:11.204260

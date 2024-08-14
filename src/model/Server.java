@@ -1,25 +1,27 @@
 package model;
 
-public class AVLTree {
+import control.FileAccess;
 
+import java.io.IOException;
+import java.util.LinkedList;
+
+public class Server {
     Node root = null;
     private String nodeList = "";
+    LinkedList<Log> logs = new LinkedList<Log>();
+    FileAccess fileAccess = new FileAccess();
 
-    public AVLTree() {
+    public Server() {
 
     }
 
-    public void inorder() {
-        nodeList = "";
-        this.inorder(root);
-    }
-
-    private void inorder(Node tree) {
-        if (tree != null) {
-            this.inorder(tree.left);
-            nodeList += tree.serviceOrder.toString();
-            this.inorder(tree.right);
+    public void addLog(Log log) throws IOException {
+        logs.add(log);
+        String writeLog = "";
+        for(Log tLog: logs){
+            writeLog += tLog.toString();
         }
+        fileAccess.WriteFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serverLog.txt", writeLog.toString());
     }
 
     public Node searchNode(int id) {
@@ -50,6 +52,19 @@ public class AVLTree {
         }
     }
 
+    public void inorder() {
+        nodeList = "";
+        this.inorder(root);
+    }
+
+    private void inorder(Node tree) {
+        if (tree != null) {
+            this.inorder(tree.left);
+            nodeList += tree.serviceOrder.toString();
+            this.inorder(tree.right);
+        }
+    }
+
     public Node lastNode(Node tree){
         Node lastNodeLeaf = null;
 
@@ -64,64 +79,65 @@ public class AVLTree {
         return nodeList;
     }
 
-    public void insertNode(int key, ServiceOrder serviceOrder) {
+    public void insertNode(int key, ServiceOrder serviceOrder) throws IOException {
         root = insertNode(root, key, serviceOrder);
+        Log log = new Log("INSERT", root.nodeHeight, "NONE");
+        addLog(log);
     }
 
-    private Node insertNode(Node tree, int key, ServiceOrder serviceOrder) {
+    private Node insertNode(Node tree, int key, ServiceOrder serviceOrder) throws IOException {
 
         if (tree == null)
-            return new Node(key, serviceOrder); // Root or new subtree
+            return new Node(key, serviceOrder);
 
         if (key < tree.key)
-            tree.left = insertNode(tree.left, key, serviceOrder); // New subtree or leaf at left
+            tree.left = insertNode(tree.left, key, serviceOrder);
 
         else if (key > tree.key)
-            tree.right = insertNode(tree.right, key, serviceOrder); // New subtree of leaf at right
+            tree.right = insertNode(tree.right, key, serviceOrder);
 
         else
             return tree;
 
-        tree.nodeHeight = 1 + bigger(height(tree.left), height(tree.right));// Adjust tree height
+        tree.nodeHeight = 1 + bigger(height(tree.left), height(tree.right)); // Adjust tree height
         int bf = getBF(tree); // Verify balancing factor
         int leftSubTreeBF = getBF(tree.left);
         int rightSubTreeBF = getBF(tree.right);
 
         if (bf > 1 && leftSubTreeBF >= 0) {
-
+            addLog(new Log("", root.nodeHeight,"SIMPLE_RIGHT_ROTATION"));
             return srr(tree); // Simple right rotation
-
         }
 
         if (bf < -1 && rightSubTreeBF <= 0) {
-
+            addLog(new Log("", root.nodeHeight,"SIMPLE_LEFT_ROTATION"));
             return slr(tree); // Simple left rotation
-
         }
 
         if (bf > 1 && leftSubTreeBF < 0) {
-
-            tree.left = slr(tree.left); // Double right rotation
-            return srr(tree);
-
+            tree.left = slr(tree.left);
+            addLog(new Log("", root.nodeHeight,"DOUBLE_RIGHT_ROTATION"));
+            return slr(tree); // Double right rotation
         }
 
         if (bf < -1 && rightSubTreeBF > 0) {
-
-            tree.right = srr(tree.right); // Double right rotation
-            return slr(tree);
-
+            tree.right = srr(tree.right);
+            addLog(new Log("", root.nodeHeight,"DOUBLE_LEFT_ROTATION"));
+            return srr(tree); // Double LEFT rotation
         }
+
 
         return tree;
 
     }
 
-    public void removeNode(int key, ServiceOrder serviceOrder) {
+    public void removeNode(int key, ServiceOrder serviceOrder) throws IOException {
         root = removeNode(root, key, serviceOrder);
+        Log log = new Log("DELETE", root.nodeHeight, "NONE");
+        addLog(log);
     }
 
-    private Node removeNode(Node tree, int key, ServiceOrder serviceOrder) {
+    private Node removeNode(Node tree, int key, ServiceOrder serviceOrder) throws IOException {
 
         if (tree == null)
             return tree;
@@ -168,18 +184,21 @@ public class AVLTree {
 
         if (bf > 1 && leftSubTreeBF >= 0) {
 
+            addLog(new Log("", root.nodeHeight,"SIMPLE_RIGHT_ROTATION"));
             return srr(tree);
 
         }
 
         if (bf < -1 && rightSubTreeBF <= 0) {
 
+            addLog(new Log("", root.nodeHeight,"SIMPLE_LEFT_ROTATION"));
             return slr(tree);
 
         }
 
         if (bf > 1 && leftSubTreeBF < 0) {
 
+            addLog(new Log("", root.nodeHeight,"DOUBLE_RIGHT_ROTATION"));
             tree.left = slr(tree.left);
             return srr(tree);
 
@@ -187,6 +206,7 @@ public class AVLTree {
 
         if (bf < -1 && rightSubTreeBF > 0) {
 
+            addLog(new Log("", root.nodeHeight,"DOUBLE_LEFT_ROTATION"));
             tree.right = srr(tree.right);
             return slr(tree);
 
@@ -205,6 +225,20 @@ public class AVLTree {
 
         while (temp.left != null)
             temp = temp.left;
+
+        return temp;
+
+    }
+
+    private Node biggerKey(Node tree) {
+
+        Node temp = tree;
+
+        if (temp == null)
+            return null;
+
+        while (temp.right != null)
+            temp = temp.right;
 
         return temp;
 
@@ -254,11 +288,20 @@ public class AVLTree {
 
     }
 
-    private int height(Node tree) {
+    public int height(Node tree) {
 
         if (tree == null)
             return -1;
 
         return tree.nodeHeight;
+    }
+
+    public int treeHeight(Node tree){
+        Node treeL = smallerKey(tree);
+        Node treeR = biggerKey(tree);
+
+        assert treeL != null;
+        assert treeR != null;
+        return bigger(treeL.nodeHeight, treeR.nodeHeight);
     }
 }

@@ -1,7 +1,5 @@
 package model;
 
-import java.sql.Time;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -16,22 +14,23 @@ public class ServiceOrder {
 
     private String description;
 
-    private LocalTime requestDate;
+    private LocalTime requestTime;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
     public ServiceOrder(int id, String name, String client, String description) {
         this.id = id;
         this.name = name;
         this.client = client;
         this.description = description;
-        this.requestDate = LocalTime.now();
+        this.requestTime = LocalTime.now();
     }
 
-    public ServiceOrder(int id, String name, String client, String description, LocalTime requestDate) {
+    public ServiceOrder(int id, String name, String client, String description, LocalTime requestTime) {
         this.id = id;
         this.name = name;
         this.client = client;
         this.description = description;
-        this.requestDate = requestDate;
+        this.requestTime = requestTime;
     }
 
     public ServiceOrder() {
@@ -44,7 +43,7 @@ public class ServiceOrder {
         System.out.println("Name: " + getName());
         System.out.println("Client: " + getClient());
         System.out.println("Description: " + getDescription());
-        System.out.println("Request Date: " + getRequestDate());
+        System.out.println("Request Time: " + getRequestTime().format(formatter));
     }
 
     public void listShow() {
@@ -52,13 +51,13 @@ public class ServiceOrder {
         System.out.print("Name: " + getName() + "  |  ");
         System.out.print("Client: " + getClient() + "  |  ");
         System.out.print("Description: " + getDescription() + "  |  ");
-        System.out.println("Request Date: " + getRequestDate());
+        System.out.println("Request Time: " + getRequestTime().format(formatter));
     }
 
     @Override
     public String toString() {
         String toString;
-        toString = getId() + ";" + getName() + ";" + getClient() + ";" + getDescription() + ";" + getRequestDate() + "\n";
+        toString = getId() + ";" + getName() + ";" + getClient() + ";" + getDescription() + ";" + getRequestTime() + "\n";
         return toString;
     }
 
@@ -94,11 +93,7 @@ public class ServiceOrder {
         this.description = description;
     }
 
-    public LocalTime getRequestDate() {
-        return requestDate;
-    }
-
-    public void setRequestDate(LocalTime requestDate) {
-        this.requestDate = requestDate;
+    public LocalTime getRequestTime() {
+        return requestTime;
     }
 }

@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 public class ServiceOrderController {
     FileAccess fileAccess = new FileAccess();
-    AVLTree serviceOrders = fileAccess.readSOFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serviceOrders.txt");
+    Server serviceOrders = fileAccess.readSOFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serviceOrders.txt");
+    Cache cache = fileAccess.readCacheFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\cache.txt");
     Scanner input = new Scanner(System.in);
-    Cache cache = new Cache();
 
     public ServiceOrderController() throws IOException { }
 
@@ -22,22 +22,39 @@ public class ServiceOrderController {
         System.out.println();
     }
 
-    public void serviceOrderView(){
+    public void serviceOrderView() throws IOException {
         System.out.println("------- Service Order Visualization --------\n");
 
         System.out.print("Select a service order by its id to visualize: ");
         int choice = input.nextInt();
 
-        Node chosen = serviceOrders.searchNode(choice);
-        if(chosen != null) {
+        ServiceOrder SOFromCache = cache.cacheSearch(choice);
+
+        if(SOFromCache != null){
             System.out.println();
-            chosen.getServiceOrder().listShow();
+
+            SOFromCache.listShow();
+            cache.updateCache();
 
             System.out.print("\nPress Enter to continue.");
             input.nextLine();
             input.nextLine();
-        } else{
-            System.out.println("\nService Order with id " + choice + " doesn't exist.\n");
+        } else {
+            Node chosen = serviceOrders.searchNode(choice);
+
+            if(chosen != null) {
+                System.out.println();
+                chosen.getServiceOrder().listShow();
+
+                cache.addServiceOrder(chosen.getServiceOrder());
+                cache.updateCache();
+
+                System.out.print("\nPress Enter to continue.");
+                input.nextLine();
+                input.nextLine();
+            } else{
+                System.out.println("\nService Order with id " + choice + " doesn't exist.\n");
+            }
         }
     }
 
@@ -144,6 +161,10 @@ public class ServiceOrderController {
         }
 
         System.out.println();
+    }
+
+    public Cache getCache(){
+        return cache;
     }
 
 }

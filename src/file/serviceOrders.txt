@@ -1,9 +1,61 @@
-0;Rock;PH;Trabalho da Faculdade;12:18:16.029276
-1;Allison;PH;Trabalho da Faculdade;12:18:16.029276
-2;Suely;PH;Trabalho da Faculdade;12:18:16.029276
-3;Everton;PH;Trabalho da Faculdade;12:18:16.029276
-4;Caio;Hudson;Trabalho da Faculdade;12:18:16.029276
-5;Hudson;PH;Trabalho da Faculdade;12:18:16.029276
-6;Ana Carla;PH;Trabalho da Faculdade;12:18:16.029276
-7;Letícia;PH;Trabalho da Faculdade;12:18:16.029276
-8;Luã;PH;Edit Test;12:18:16.029276
+0;Deliver Package;Ana;Assist with setting up new devices at AAA Road;20:50:31.461704
+1;Deliver Package;Maria;Conduct a routine maintenance check at YYY Avenue;22:09:47.196838
+2;Visit Client Store;Ana;Deliver documents to the office at BBB Lane;21:59:40.100898
+3;Consultation;Ana;Conduct a routine maintenance check at YYY Avenue;22:54:09.372316
+4;Maintenance Check;Maria;Conduct a routine maintenance check at YYY Avenue;20:51:17.529143
+5;Visit Client Store;Ana;Check on the client's inventory at AAA Road;22:09:14.401833
+6;Visit Client Store;Carlos;Conduct a routine maintenance check at ZZZ Boulevard;22:17:12.521799
+7;Consultation;Lucas;Discuss contract renewal options at XXX Street;21:28:53.744190
+8;Inspect Equipment;João;Assist with setting up new devices at CCC Drive;22:02:57.494429
+9;Inspect Equipment;Iranildo;Inspect the air conditioning units at BBB Lane;22:35:28.266770
+10;Inspect Equipment;João;Assist with setting up new devices at ZZZ Boulevard;21:10:08.744235
+11;Inspect Equipment;Maria;Discuss contract renewal options at BBB Lane;22:28:04.593555
+12;Maintenance Check;Rafael;Evaluate the equipment performance at ZZZ Boulevard;21:56:44.434223
+13;Consultation;Ana;Deliver documents to the office at BBB Lane;22:43:56.358195
+14;Deliver Package;Luiz;Inspect the air conditioning units at BBB Lane;22:04:53.663388
+15;Deliver Package;Luiz;Follow up on previous repairs at XXX Street;22:48:06.726197
+16;Maintenance Check;João;Provide a consultation regarding the new project at ZZZ Boulevard;22:29:00.463081
+17;Visit Client Store;Carlos;Drop off the package at ZZZ Boulevard;21:21:10.825937
+18;Consultation;João;Inspect the air conditioning units at XXX Street;21:58:50.373318
+19;Inspect Equipment;Carlos;Inspect the air conditioning units at YYY Avenue;20:58:24.523887
+20;Consultation;Rafael;Assist with setting up new devices at XXX Street;23:00:57.131640
+21;Inspect Equipment;João;Provide a consultation regarding the new project at CCC Drive;20:51:57.369970
+22;Deliver Package;Ana;Conduct a routine maintenance check at YYY Avenue;21:08:59.779838
+23;Maintenance Check;Maria;Assist with setting up new devices at XXX Street;21:48:18.440027
+24;Maintenance Check;Ana;Provide a consultation regarding the new project at YYY Avenue;20:24:55.871762
+25;Deliver Package;Lucas;Conduct a routine maintenance check at XXX Street;21:39:55.144085
+26;Inspect Equipment;Rafael;Conduct a routine maintenance check at BBB Lane;23:04:38.523910
+27;Inspect Equipment;Maria;Inspect the air conditioning units at AAA Road;22:22:31.885308
+28;Inspect Equipment;Rafael;Discuss contract renewal options at BBB Lane;21:13:34.938613
+29;Consultation;Fernanda;Drop off the package at YYY Avenue;22:26:27.846304
+30;Consultation;Iranildo;Conduct a routine maintenance check at AAA Road;22:03:38.586383
+31;Inspect Equipment;Rafael;Deliver documents to the office at YYY Avenue;21:09:31.908149
+32;Maintenance Check;Ana;Assist with setting up new devices at CCC Drive;22:45:11.204260
+33;Inspect Equipment;Carlos;Deliver documents to the office at XXX Street;23:04:49.227245
+34;Inspect Equipment;Luiz;Follow up on previous repairs at ZZZ Boulevard;22:32:09.975645
+35;Maintenance Check;Iranildo;Evaluate the equipment performance at XXX Street;20:42:04.766136
+36;Visit Client Store;Fernanda;Deliver documents to the office at YYY Avenue;21:01:59.881425
+37;Deliver Package;Rafael;Discuss contract renewal options at XXX Street;21:41:37.131207
+38;Deliver Package;João;Assist with setting up new devices at XXX Street;22:52:06.540220
+39;Inspect Equipment;Iranildo;Assist with setting up new devices at CCC Drive;22:04:25.958841
+40;Inspect Equipment;Luiz;Conduct a routine maintenance check at XXX Street;22:26:12.434291
+41;Inspect Equipment;Rafael;Follow up on previous repairs at ZZZ Boulevard;20:31:08.537853
+42;Maintenance Check;Juliana;Evaluate the equipment performance at YYY Avenue;20:20:54.412324
+43;Visit Client Store;Carlos;Follow up on previous repairs at AAA Road;22:58:50.814035
+44;Visit Client Store;Carlos;Assist with setting up new devices at YYY Avenue;22:16:52.532758
+45;Package Delivery;João;Provide a consultation regarding the new project at CCC Drive;22:42:48.295038
+46;Visit Client Store;Juliana;Inspect the air conditioning units at AAA Road;21:02:38.394127
+47;Consultation;Iranildo;Conduct a routine maintenance check at AAA Road;22:15:19.186033
+48;Inspect Equipment;Luiz;Drop off the package at BBB Lane;21:05:24.493295
+49;Deliver Package;Iranildo;Discuss contract renewal options at XXX Street;22:51:42.918430
+50;Maintenance Check;Iranildo;Evaluate the equipment performance at CCC Drive;20:25:53.082079
+51;Deliver Package;Lucas;Provide a consultation regarding the new project at BBB Lane;21:41:19.758147
+52;Visit Client Store;Rafael;Follow up on previous repairs at ZZZ Boulevard;22:53:02.726957
+53;Deliver Package;Iranildo;Assist with setting up new devices at BBB Lane;20:23:17.664418
+54;Visit Client Store;Maria;Provide a consultation regarding the new project at AAA Road;21:10:37.232837
+55;Deliver Package;Iranildo;Drop off the package at YYY Avenue;21:41:51.864804
+56;Visit Client Store;Ana;Follow up on previous repairs at YYY Avenue;22:00:11.452489
+57;Deliver Package;Fernanda;Inspect the air conditioning units at XXX Street;20:26:53.726610
+58;Consultation;Maria;Follow up on previous repairs at BBB Lane;22:30:55.465956
+59;Deliver Package;Iranildo;Conduct a routine maintenance check at YYY Avenue;20:28:24.241517
+60;Visit client;Reinaldo;Check client's equipment;19:58:06.906972900
