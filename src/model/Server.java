@@ -2,10 +2,13 @@ package model;
 
 import control.FileAccess;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
 public class Server {
+    File serverLogFile = new File("src\\file\\serverLog.txt");
+
     Node root = null;
     private String nodeList = "";
     LinkedList<Log> logs = new LinkedList<Log>();
@@ -21,7 +24,7 @@ public class Server {
         for(Log tLog: logs){
             writeLog += tLog.toString();
         }
-        fileAccess.WriteFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\serverLog.txt", writeLog.toString());
+        fileAccess.WriteFile(serverLogFile, writeLog.toString());
     }
 
     public Node searchNode(int id) {

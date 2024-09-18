@@ -2,9 +2,12 @@ package model;
 
 import control.FileAccess;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Cache {
+    File cacheFile = new File("src\\file\\cache.txt");
+
     private final Queue<ServiceOrder> cacheSO = new Queue<ServiceOrder>(20);
     FileAccess fileAccess = new FileAccess();
 
@@ -62,6 +65,6 @@ public class Cache {
     }
 
     public void updateCache() throws IOException {
-        fileAccess.WriteFile("C:\\Users\\Rock\\IdeaProjects\\Cache-Eviction\\src\\file\\cache.txt", listCache());
+        fileAccess.WriteFile(cacheFile, listCache());
     }
 }

@@ -11,14 +11,14 @@ import java.util.LinkedList;
 
 public class FileAccess {
 
-    public void WriteFile(String path, String input) throws IOException
+    public void WriteFile(File path, String input) throws IOException
     {
         BufferedWriter bufferedWriter = new BufferedWriter( new FileWriter(path) );
         bufferedWriter.append(input);
         bufferedWriter.close();
     }
 
-    public Server readSOFile(String path) throws IOException {
+    public Server readSOFile(File path) throws IOException {
         Server servicesOrders = new Server();
 
         BufferedReader bufferedReader = new BufferedReader( new FileReader(path) );
@@ -49,7 +49,7 @@ public class FileAccess {
         return servicesOrders;
     }
 
-    public Cache readCacheFile(String path) throws IOException {
+    public Cache readCacheFile(File path) throws IOException {
         Cache cacheSO = new Cache();
 
         BufferedReader bufferedReader = new BufferedReader( new FileReader(path) );
